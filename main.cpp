@@ -48,10 +48,8 @@ int main() {
     };
 
     std::cin >> cases;
-    std::cout << cases << std::endl;
 
     std::cin >> knightCount;
-    std::cout << knightCount << std::endl;
 
     knightArray = new ChessPiece[knightCount];
 
@@ -59,31 +57,24 @@ int main() {
         ChessPiece knightPiece;
         std::cin >> knightPiece.x >> knightPiece.y;
         knightArray[a] = knightPiece;
-        std::cout << knightPiece.x << ", " << knightPiece.y << std::endl;
 
         knightPiece.moveSets = &knightMoveSet;
     }
 
-    //    for (int a = 0; a < knightCount; a++) {
-//        std::cout << (knightArray + a)->x << ", " << (knightArray + a)->y << std::endl;
-//    }
-
     std::cin >> king.x >> king.y;
-    std::cout << king.x << ", " << king.y << std::endl;
 
     for (int a = 0; a < knightCount; a++) {
         for (int b = 0; b < KNIGHT_MOVES; b++) {
             printf("king x: %d, king y: %d\n", king.x, king.y);
-            printf("knight x: %d, knight y: %d\n", knightArray[a].moveSets->positions[b].x, knightArray[a].moveSets->positions[b].x);
-//            if (king.x == knightArray[a].moveSets->positions[b].x
-//                && king.y == knightArray[a].moveSets->positions[a].y) {
-//                std::cout << "inside if";
-//                printf("king x: %d, king y: %d", king.x, king.y);
-//                printf("knight x: %d, knight y: %d", knightArray[a].moveSets->positions[b].x, knightArray[a].moveSets->positions[b].y);
-//                printf("YES");
-//                std::cout << "finished" << std::endl;
-//                exit(0);
-//            }
+
+            int xMove = knightArray[a].x + knightMoveSet.positions[b].x;
+            int yMove = knightArray[a].y + knightMoveSet.positions[b].y;
+            printf("knight x moves: %d, knight y moves: %d\n", xMove, yMove);
+
+            if (king.x == xMove && king.y == yMove) {
+                printf("YES");
+                exit(0);
+            }
         }
     }
 
