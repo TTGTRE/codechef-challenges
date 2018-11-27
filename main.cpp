@@ -1,43 +1,42 @@
 
-#include <cstdio>
 #include <iostream>
 
 #define KNIGHT_MOVES 8
 
-struct point {
+struct Point {
     int x, y;
 
-    point(int x, int y);
+    Point(int x, int y);
 };
 
-point::point(int x, int y) {
+Point::Point(int x, int y) {
     this->x = x;
     this->y = y;
 }
 
-struct move_set {
-    point *positions;
+struct MoveSet {
+    Point *positions;
 
-    int size();
+    int getSize();
 };
 
-int move_set::size() {
+int MoveSet::getSize() {
     return sizeof(positions);
 }
 
-struct piece {
+struct ChessPiece {
     int x, y;
-    move_set *_move_offsets;
+    MoveSet *moveSets;
 };
 
 int main() {
 
-    int test_cases;
-    int knight_num;
-    piece *p_knight_arr;
-    piece king;
-    move_set _knight_moveset;
-    _knight_moveset.positions = new point[KNIGHT_MOVES]{
+    int cases;
+    int knightCount;
+    ChessPiece *knightArray;
+    ChessPiece king;
+    MoveSet knightMoveSet;
+    knightMoveSet.positions = new Point[KNIGHT_MOVES]{
             {-1, 2},
             {1,  2},
             {-1, -2},
@@ -48,43 +47,43 @@ int main() {
             {-2, -1}
     };
 
-    std::cin >> test_cases;
-    std::cout << test_cases << std::endl;
+    std::cin >> cases;
+    std::cout << cases << std::endl;
 
-    std::cin >> knight_num;
-    std::cout << knight_num << std::endl;
+    std::cin >> knightCount;
+    std::cout << knightCount << std::endl;
 
-    p_knight_arr = new piece[knight_num];
+    knightArray = new ChessPiece[knightCount];
 
-    for (int a = 0; a < knight_num; a++) {
-        piece _knight;
-        std::cin >> _knight.x >> _knight.y;
-        p_knight_arr[a] = _knight;
-        std::cout << _knight.x << ", " << _knight.y << std::endl;
+    for (int a = 0; a < knightCount; a++) {
+        ChessPiece knightPiece;
+        std::cin >> knightPiece.x >> knightPiece.y;
+        knightArray[a] = knightPiece;
+        std::cout << knightPiece.x << ", " << knightPiece.y << std::endl;
 
-        _knight._move_offsets = &_knight_moveset;
+        knightPiece.moveSets = &knightMoveSet;
     }
 
-    //    for (int a = 0; a < knight_num; a++) {
-//        std::cout << (p_knight_arr + a)->x << ", " << (p_knight_arr + a)->y << std::endl;
+    //    for (int a = 0; a < knightCount; a++) {
+//        std::cout << (knightArray + a)->x << ", " << (knightArray + a)->y << std::endl;
 //    }
 
     std::cin >> king.x >> king.y;
     std::cout << king.x << ", " << king.y << std::endl;
 
-    for (int a = 0; a < knight_num; a++) {
-//        std::cout << "cycling";
+    for (int a = 0; a < knightCount; a++) {
         for (int b = 0; b < KNIGHT_MOVES; b++) {
-//            std::cout << "cycling2";
-            if (king.x == p_knight_arr[a]._move_offsets->positions[b].x
-                && king.y == p_knight_arr[a]._move_offsets->positions[a].y) {
+            printf("king x: %d, king y: %d\n", king.x, king.y);
+            printf("knight x: %d, knight y: %d\n", knightArray[a].moveSets->positions[b].x, knightArray[a].moveSets->positions[b].x);
+//            if (king.x == knightArray[a].moveSets->positions[b].x
+//                && king.y == knightArray[a].moveSets->positions[a].y) {
 //                std::cout << "inside if";
 //                printf("king x: %d, king y: %d", king.x, king.y);
-//                printf("knight x: %d, knight y: %d", p_knight_arr[a]._move_offsets->positions[b].x, p_knight_arr[a]._move_offsets->positions[b].y);
-                printf("YES");
+//                printf("knight x: %d, knight y: %d", knightArray[a].moveSets->positions[b].x, knightArray[a].moveSets->positions[b].y);
+//                printf("YES");
 //                std::cout << "finished" << std::endl;
-                exit(0);
-            }
+//                exit(0);
+//            }
         }
     }
 
