@@ -3,4 +3,4 @@ project(testing)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(testing validstk.cpp)
+add_executable(testing lifeltd.cpp)
