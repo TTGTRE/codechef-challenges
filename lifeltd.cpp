@@ -8,8 +8,8 @@ int main() {
     int *answer_array = new int[case_count]{0};
     for (int current_case = 0; current_case < case_count; current_case++) {
         char line_array[SIZE_3][SIZE_3];
-        for (int line = 0; line < SIZE_3; line++) {
-            std::cin >> line_array[line][0] >> line_array[line][1] >> line_array[line][2];
+        for (auto &line : line_array) {
+            std::cin >> line[0] >> line[1] >> line[2];
         }
         bool valid_ = false;
         for (int line = 0; line < 3; line++) {
