@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 int main() {
     int lc;
@@ -7,7 +8,7 @@ int main() {
     for (int l = 0; l < lc; l++) {
         std::cin >> a[l];
     }
-    std::sort(a[0], a[lc]);
+    std::sort(a, a + lc);
     for (int n:a) {
         std::cout << n << " ";
     }
